@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lepton Papers · III of IV — The Electroweak Doctrine</title>
+<style>
+  :root{
+    --field:#E9ECEF; --field-2:#E0E4E8; --field-3:#F4F6F8;
+    --ink:#161A20; --ink-soft:#55616E;
+    --volt:#1F66C9; --volt-br:#2F7CE0;
+    --weak:#7E5BA6; --weak-br:#9B79C2;
+    --uni:#2E8C84; --uni-br:#3FA89F;
+    --steel:#6E7E8E; --rule:#CCD3DA; --rule-2:#B7C0C9;
+    --colorless:#FFFFFF;
+    --lit:#3C8554; --bri:#9C7320; --spec:#BC4C3D;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--field);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    font-size:18px;line-height:1.56;-webkit-font-smoothing:antialiased}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  :focus-visible{outline:2px solid var(--uni);outline-offset:3px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 30px}
+
+  header.mast{padding:54px 0 30px;border-bottom:2px solid var(--uni)}
+  .series{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--uni);margin:0 0 22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .series b{color:var(--ink-soft);font-weight:400}
+  h1{font-size:clamp(27px,4.6vw,42px);line-height:1.08;margin:0;font-weight:600;letter-spacing:.005em}
+  .abstract{max-width:62ch;margin:18px 0 0;font-size:18px}
+  .priorlink{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--ink-soft);margin:14px 0 0}
+  .byline{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-soft);margin:8px 0 0}
+
+  .sig{margin:30px 0 0;padding:20px 20px 14px;background:var(--field-3);border:1px solid var(--rule-2)}
+  .sig svg{display:block;width:100%;height:auto}
+  .sig .cap{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.04em;color:var(--ink-soft);margin:10px 2px 0;line-height:1.5}
+  .sig .cap b{color:var(--uni);font-weight:600}
+  .sig .cap .v{color:var(--volt);font-weight:600}
+  .sig .cap .w{color:var(--weak);font-weight:600}
+  .axin{stroke:var(--steel);stroke-width:2;fill:none}
+  .axph{stroke:var(--volt);stroke-width:2.4;fill:none}
+  .axz{stroke:var(--weak);stroke-width:2.4;fill:none}
+  .arc{stroke:var(--uni);stroke-width:1.6;fill:none}
+  .lab{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;fill:var(--ink-soft)}
+  .lab-u{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--uni);font-weight:700}
+  .lab-v{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--volt);font-weight:700}
+  .lab-w{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--weak);font-weight:700}
+  .lab-st{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--steel);font-weight:700}
+
+  .legend{margin:26px 0 0;display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
+  .legend .lt{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:2px}
+  .schip{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border:1px solid;background:transparent;cursor:pointer}
+  .schip[data-s="lit"]{color:var(--lit);border-color:var(--lit)}
+  .schip[data-s="bri"]{color:var(--bri);border-color:var(--bri)}
+  .schip[data-s="spec"]{color:var(--spec);border-color:var(--spec)}
+  .schip[aria-pressed="false"]{opacity:.4}
+  .legend .hint{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;color:var(--ink-soft)}
+
+  section{padding:32px 0;border-bottom:1px solid var(--rule)}
+  .snum{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--uni);letter-spacing:.18em}
+  h2{font-size:clamp(19px,3vw,25px);margin:4px 0 0;font-weight:600;letter-spacing:.01em}
+  h2 .kicker{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-left:10px;font-weight:400}
+  section p{margin:14px 0 0;max-width:66ch}
+  .central{border-left:3px solid var(--uni)}
+
+  .defs{margin:16px 0 0;border:1px solid var(--rule-2);background:var(--field-3)}
+  .def{display:grid;grid-template-columns:128px 1fr;gap:0 16px;padding:11px 16px;border-bottom:1px solid var(--rule)}
+  .def:last-child{border-bottom:0}
+  .def .dk{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;font-weight:700;color:var(--uni)}
+  .def .dv{font-size:15.5px}
+  .def .dv b{font-weight:600}
+
+  .law{display:grid;grid-template-columns:74px 1fr;gap:0 16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .law:last-child{border-bottom:0}
+  .law .lid{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;font-weight:700;color:var(--ink);padding-top:2px}
+  .law .lbody .lname{font-weight:600;font-size:16.5px}
+  .law .lbody p{margin:5px 0 0;font-size:15.5px;color:var(--ink);max-width:64ch}
+  .law .lbody .tags{margin-top:9px}
+
+  .prop .pid{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--uni);font-weight:700}
+
+  .formal{margin:16px 0 0;padding:13px 16px;background:var(--field-3);border:1px solid var(--rule-2);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px;line-height:1.7}
+  .formal .eq{font-size:16px;color:var(--ink)}
+  .formal .gl{color:var(--ink-soft);font-size:12.5px}
+  .restated{margin:13px 0 0;padding:11px 15px;background:var(--field-2);border-left:3px solid var(--rule-2);font-size:15.5px}
+  .restated b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:400;display:block;margin-bottom:4px}
+
+  .tags{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border:1px solid}
+  .tag.lit{color:var(--lit);border-color:var(--lit)}
+  .tag.bri{color:var(--bri);border-color:var(--bri)}
+  .tag.spec{color:var(--spec);border-color:var(--spec)}
+  .test{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;padding-left:14px;border-left:2px solid var(--rule-2)}
+  .test b{color:var(--uni);font-weight:600}
+  .dim{opacity:.24;transition:opacity .2s ease}
+
+  .fig{margin:30px 0 6px;padding:22px 18px 16px;background:var(--field-3);border:1px solid var(--rule-2)}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig .figcap{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--ink-soft);margin:12px 4px 0;line-height:1.55}
+  .scaleline{stroke:var(--rule-2);stroke-width:1.4}
+  .uniline{stroke:var(--uni);stroke-width:2.6;fill:none}
+  .phbranch{stroke:var(--volt);stroke-width:2.4;fill:none}
+  .zbranch{stroke:var(--weak);stroke-width:2.4;fill:none}
+  .compbox{fill:var(--field-2);stroke:var(--rule-2);stroke-width:1.2}
+  .flab{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--ink)}
+  .flab-s{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;fill:var(--ink-soft)}
+  .flab-v{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;fill:var(--volt)}
+  .flab-w{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;fill:var(--weak)}
+  .flab-u{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;fill:var(--uni)}
+
+  .closer{padding:32px 0 0;border-bottom:0}
+  .closer p{font-size:19px;max-width:64ch}
+  .closer .em{font-style:italic}
+  .roadmap{margin:18px 0 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .roadmap .rm{padding:12px 14px;background:var(--field-3);border:1px solid var(--rule-2);border-top:3px solid var(--uni)}
+  .roadmap .rm.done{border-top-color:var(--steel);opacity:.7}
+  .roadmap .rm .rk{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--uni);margin:0 0 5px}
+  .roadmap .rm.done .rk{color:var(--steel)}
+  .roadmap .rm p{margin:0;font-size:13.5px;color:var(--ink-soft);max-width:none}
+
+  footer{padding:30px 0 80px;color:var(--ink-soft);font-size:13.5px;line-height:1.6}
+  footer p{margin:0 0 12px;max-width:72ch}
+  footer b{color:var(--ink);font-weight:600}
+
+  @media (max-width:640px){ .roadmap{grid-template-columns:1fr} }
+  @media (max-width:600px){ body{font-size:17px} .series{font-size:11px;letter-spacing:.2em} .formal{font-size:13.5px} .def,.law{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="series"><span>Lepton Papers · III of IV</span><b>electroweak series · release · doctrine</b></p>
+    <h1>The Electroweak Doctrine</h1>
+    <p class="abstract">Paper I gave the observer a passive mode — watching, through the photon. Paper II gave it a participating mode — handed, through the weak force. They looked like two faculties. They are one. Above a certain energy the electromagnetic and the weak are a single interaction; the photon and the Z are mixtures of two deeper fields, rotated by one angle. The separation we see is an artifact of working below the scale where the unity shows. And the cut goes deeper than the forces: electric charge — the property that made the observer an electron at all — is not fundamental. It is a composite, and the electron is its low-energy face.</p>
+    <p class="priorlink mono">↳ continues Lepton Papers · II §6 C3 — the watching and the participating, revealed as one</p>
+    <p class="byline mono">Bridge-Burners LLC · Fiddler · unification · mixing · derived charge · anchor: AKASHA</p>
+
+    <div class="sig" aria-label="The electroweak mixing: two fundamental neutral fields W-three and B rotated by the weak mixing angle into the photon and the Z">
+      <svg viewBox="0 0 760 210" role="img" aria-label="Two grey input axes W3 and B at the origin, rotated by an angle theta-W into a blue photon axis and a violet Z axis">
+        <!-- origin -->
+        <circle cx="120" cy="150" r="3" fill="#161A20"/>
+        <!-- input fields W3, B (steel) -->
+        <line class="axin" x1="120" y1="150" x2="120" y2="40"/>
+        <text class="lab-st" x="120" y="32" text-anchor="middle">W³ · weak isospin</text>
+        <line class="axin" x1="120" y1="150" x2="300" y2="150"/>
+        <text class="lab-st" x="318" y="154">B · hypercharge</text>
+        <!-- mixing angle arc -->
+        <path class="arc" d="M 120 100 a 50 50 0 0 1 31 -39"/>
+        <text class="lab-u" x="150" y="92">θ_W</text>
+        <!-- output: photon (volt) and Z (weak), rotated -->
+        <line class="axph" x1="120" y1="150" x2="270" y2="92"/>
+        <text class="lab-v" x="286" y="88">γ · photon</text>
+        <line class="axz" x1="120" y1="150" x2="62" y2="42"/>
+        <text class="lab-w" x="40" y="36">Z</text>
+        <!-- the rotation, restated to the right -->
+        <text class="lab-u" x="470" y="86">γ = B·cosθ_W + W³·sinθ_W</text>
+        <text class="lab-u" x="470" y="108">Z = −B·sinθ_W + W³·cosθ_W</text>
+        <text class="lab" x="470" y="132">two fields in · two bosons out · one angle</text>
+      </svg>
+      <p class="cap">The observed neutral bosons are not fundamental. The <span class="v">photon</span> and the <span class="w">Z</span> are rotations of two deeper fields — <b>W³</b> and <b>B</b> — through a single mixing angle <b>θ_W</b>. The watching of Paper I and the participating of Paper II are one structure, refracted by one angle. Turn the dial and the blend shifts.</p>
+    </div>
+
+    <div class="legend" role="group" aria-label="Filter claims by status">
+      <span class="lt">Status</span>
+      <button class="schip" data-s="lit" aria-pressed="true">Literal</button>
+      <button class="schip" data-s="bri" aria-pressed="true">Bridge</button>
+      <button class="schip" data-s="spec" aria-pressed="true">Speculative</button>
+      <span class="hint">— literal: true of the substrate · bridge: structural analogy · speculative: named so it can be refused</span>
+    </div>
+  </div>
+</header>
+
+<section data-status="lit">
+  <div class="wrap">
+    <p class="snum">§1 · definitions</p><h2>The terms<span class="kicker">what is fixed before the doctrine</span></h2>
+    <p>Four definitions, each a standard-model fact, stated to be built on.</p>
+    <div class="defs">
+      <div class="def"><div class="dk">D1 · weak isospin</div><div class="dv">The SU(2) charge of the weak sector — the source of the <b>W</b> fields, including the neutral <b>W³</b>.</div></div>
+      <div class="def"><div class="dk">D2 · hypercharge</div><div class="dv">The U(1) charge — the source of a single neutral field, <b>B</b>. Not electromagnetism; a more fundamental quantity.</div></div>
+      <div class="def"><div class="dk">D3 · unification</div><div class="dv">Above the electroweak scale, weak isospin and hypercharge are one structure, SU(2)×U(1). The photon and the Z are <b>mixtures</b> of W³ and B.</div></div>
+      <div class="def"><div class="dk">D4 · mixing angle</div><div class="dv">The single angle <b>θ_W</b> (the Weinberg angle) that rotates W³ and B into the photon and the Z.</div></div>
+    </div>
+    <div class="tags"><span class="tag lit">Literal — standard-model structure</span></div>
+  </div>
+</section>
+
+<section data-status="lit bri">
+  <div class="wrap">
+    <p class="snum">§2 · the unification rules</p><h2>The doctrine<span class="kicker">five laws of the single force</span></h2>
+    <p>From D1–D4, five rules. The first four are literal; the fifth carries them into the doctrine of the observer.</p>
+    <div class="law">
+      <div class="lid">UR-1</div>
+      <div class="lbody"><div class="lname">Two neutral fields, not three</div>
+        <p>The fundamental neutral gauge fields are W³ and B — not the photon and the Z. What is observed at low energy is downstream of these two.</p>
+        <div class="tags"><span class="tag lit">Literal</span></div></div>
+    </div>
+    <div class="law">
+      <div class="lid">UR-2</div>
+      <div class="lbody"><div class="lname">Mixing</div>
+        <p>The photon and the Z are rotations of W³ and B by the single angle θ_W. The two forces you measure are two projections of one structure.</p>
+        <div class="tags"><span class="tag lit">Literal</span></div></div>
+    </div>
+    <div class="law">
+      <div class="lid">UR-3</div>
+      <div class="lbody"><div class="lname">Charge is derived</div>
+        <p>Electric charge is not fundamental. It is a combination of weak isospin and hypercharge: Q = T₃ + Y/2. The defining property of the electron is composite.</p>
+        <div class="tags"><span class="tag lit">Literal</span></div></div>
+    </div>
+    <div class="law">
+      <div class="lid">UR-4</div>
+      <div class="lbody"><div class="lname">Hidden unity</div>
+        <p>Above the electroweak scale the symmetry is manifest and the force is one; below it the symmetry is hidden and the force appears as two. The separation is a low-energy artifact, not a fundamental fact.</p>
+        <div class="tags"><span class="tag lit">Literal</span></div></div>
+    </div>
+    <div class="law">
+      <div class="lid">UR-5</div>
+      <div class="lbody"><div class="lname">One coupling, refracted</div>
+        <p>Electromagnetism and the weak force are the same interaction seen through the mixing. The watching of Paper I and the participating of Paper II are one structure, split only by scale.</p>
+        <div class="tags"><span class="tag bri">Bridge — the headline</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="central" data-status="bri lit">
+  <div class="wrap">
+    <p class="snum">§3 · proposition I</p><h2>Watching and participating are one<span class="kicker">two modes, one coupling</span></h2>
+    <p>The observer seemed to have two faculties: the passive electromagnetic read of Paper I, leaving the particle the particle it was, and the handed weak participation of Paper II, reaching even the colorless. By UR-5 they are not two. They are one coupling refracted through the mixing angle — the photon and the Z drawn from the same W³ and B, the same source projected two ways. The observer does not switch between a watching faculty and a participating faculty. It has one coupling to the system, and what looks like watching versus participating is which projection of that single coupling dominates at the energy of the probe.</p>
+    <div class="formal">
+      <span class="eq">EM (watch)  &  weak (participate)  =  projections of  SU(2)×U(1)</span><br>
+      <span class="gl">one coupling · two faces · the mixing angle sets the blend</span>
+    </div>
+    <div class="restated"><b>Without the metaphor</b>
+      Passive reading and active intervention are not separate capabilities of a measurement apparatus; they are limits of a single interaction. Every read carries some intervention and every intervention carries some read — the proportion, not the kind, is what changes.</div>
+    <div class="tags">
+      <span class="tag bri">Bridge — watching and participating as one refracted coupling</span>
+      <span class="tag lit">Literal — EM and weak are projections of one electroweak interaction</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="fig" aria-label="An energy fork: one unified force above the electroweak scale, splitting below it into a massless long-range photon and massive short-range W and Z">
+    <svg viewBox="0 0 760 210" role="img" aria-label="A single teal line at high energy forking at the electroweak scale into a blue photon line going far and a violet Z line cut short">
+      <line class="scaleline" x1="60" y1="20" x2="60" y2="190"/>
+      <text class="flab-s" x="50" y="28" text-anchor="end">high E</text>
+      <text class="flab-s" x="50" y="188" text-anchor="end">low E</text>
+      <!-- unified above -->
+      <path class="uniline" d="M 380 20 L 380 96"/>
+      <text class="flab-u" x="392" y="40">one force · SU(2)×U(1)</text>
+      <!-- the scale -->
+      <line class="scaleline" x1="60" y1="96" x2="720" y2="96"/>
+      <text class="flab-s" x="712" y="90" text-anchor="end">electroweak scale · symmetry breaks</text>
+      <!-- photon branch: massless, long range -->
+      <path class="phbranch" d="M 380 96 Q 330 140 200 150 L 90 150"/>
+      <text class="flab-v" x="150" y="172">photon · massless · long-range</text>
+      <!-- Z branch: massive, short range (cut short) -->
+      <path class="zbranch" d="M 380 96 Q 430 130 480 138"/>
+      <line class="zbranch" x1="480" y1="138" x2="510" y2="138" stroke-dasharray="3 4"/>
+      <text class="flab-w" x="560" y="142">W, Z · massive · short-range</text>
+    </svg>
+    <p class="figcap">Fig. 1 — The fork. Above the electroweak scale there is one force. Below it the symmetry breaks and it appears as two: a photon that stays massless and reaches far, and W and Z that became heavy and act only up close. The unity is real and concealed — UR-4. The watching reaches far because the photon kept the symmetry the participating lost.</p>
+  </div>
+</div>
+
+<section class="central" data-status="bri lit">
+  <div class="wrap">
+    <p class="snum">§4 · proposition II</p><h2>The observer's charge is not fundamental<span class="kicker">the electron is a low-energy face</span></h2>
+    <p>This is the deep cut. By UR-3, electric charge — the very property that made the observer an electron in Paper I, the thing that let a photon reach it at all — is not a primitive. It is a derived quantity, Q = T₃ + Y/2, assembled from weak isospin and hypercharge. The observer's defining identity is composite. The electron is not a fundamental object that happens to carry charge; it is the low-energy appearance of something with more structure, and its charge is a bookkeeping sum over deeper quantum numbers. Paper I built the entire doctrine on two facts — charged and colorless. This paper shows the first of those two was already a composite of things beneath it.</p>
+    <div class="formal">
+      <span class="eq">Q = T₃ + Y/2</span><br>
+      <span class="gl">electric charge = weak isospin + half hypercharge · the observer's identity is built, not given</span>
+    </div>
+    <div class="tags">
+      <span class="tag bri">Bridge — the observer's defining property is composite</span>
+      <span class="tag lit">Literal — electric charge is a combination of T₃ and Y</span>
+    </div>
+    <p class="test"><b>Test ·</b> a property that decomposes is a property that can be reorganised. If the observer's charge is a sum over deeper quantities, then what reads as one fixed identity at low energy may resolve into several at high energy — the electron is a name for a regime, not a floor.</p>
+  </div>
+</section>
+
+<section data-status="lit bri">
+  <div class="wrap">
+    <p class="snum">§5 · proposition III</p><h2>The split is an artifact of scale<span class="kicker">probe harder and the two become one</span></h2>
+    <p>By UR-4 the apparent separation of watching and participating is a consequence of measuring below the unification scale. The two forces are distinct only because the symmetry that joins them is hidden at low energy. Probe hard enough — climb above the scale — and the photon and the Z stop being two things and resolve into W³ and B, one structure. So the duality the observer experiences, passive read here and handed intervention there, is not fundamental to observation. It is what observation looks like at the energies we usually work at. The unity is always present; it is the separation that is conditional, bought by staying low.</p>
+    <div class="tags">
+      <span class="tag lit">Literal — electroweak symmetry is restored above the scale</span>
+      <span class="tag bri">Bridge — the watching/participating split as scale-dependent appearance</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="fig" aria-label="Electric charge composed from two deeper quantum numbers: weak isospin T-three plus half the hypercharge Y">
+    <svg viewBox="0 0 760 150" role="img" aria-label="Two component boxes, weak isospin and half hypercharge, combining with a plus into a derived electric charge box">
+      <rect class="compbox" x="60" y="50" width="180" height="52" rx="3"/>
+      <text class="flab" x="150" y="74" text-anchor="middle">weak isospin</text>
+      <text class="flab-s" x="150" y="92" text-anchor="middle">T₃</text>
+      <text class="flab" x="270" y="84" text-anchor="middle" font-size="22">+</text>
+      <rect class="compbox" x="300" y="50" width="180" height="52" rx="3"/>
+      <text class="flab" x="390" y="74" text-anchor="middle">half hypercharge</text>
+      <text class="flab-s" x="390" y="92" text-anchor="middle">Y / 2</text>
+      <text class="flab" x="510" y="84" text-anchor="middle" font-size="20">=</text>
+      <rect class="compbox" x="540" y="44" width="160" height="64" rx="3" stroke="#1F66C9"/>
+      <text class="flab-v" x="620" y="70" text-anchor="middle">electric charge</text>
+      <text class="flab-v" x="620" y="90" text-anchor="middle">Q</text>
+      <text class="flab-s" x="380" y="132" text-anchor="middle">the property that made the observer an electron — assembled from two beneath it</text>
+    </svg>
+    <p class="figcap">Fig. 2 — Charge, decomposed. The electron's electric charge is not a given; it is the sum T₃ + Y/2 of two more fundamental quantum numbers. The defining attribute of the observer in Paper I is, by Paper III, a composite — the low-energy face of weak isospin and hypercharge. Identities that decompose are regimes, not floors.</p>
+  </div>
+</div>
+
+<section data-status="lit bri">
+  <div class="wrap">
+    <p class="snum">§6 · corollaries</p><h2>Consequences<span class="kicker">the angle, the survivor, the seam to mass</span></h2>
+    <p><b>C1 — the angle is the dial between modes.</b> θ_W sets how much of the neutral coupling is photon-like — pure charge, passive — and how much is Z-like — weak isospin, handed. One number governs the blend of watching and participating. The observer does not have two settings; it has one angle.</p>
+    <p><b>C2 — the photon is the survivor.</b> When the symmetry breaks, exactly one combination stays massless and unbroken: the photon. The passive watching survives to low energy long-range and effortless; the participating becomes heavy and local. Watching feels free and reaches far because, of the unified force, it is the part that kept the symmetry the rest gave up.</p>
+    <p><b>C3 — the seam to mass.</b> What broke the symmetry, made the W and Z heavy, and split the one force into two apparent ones? A field that fills all space and is never zero. That field, and the mass it confers — on the carriers, on the electron, on the observer itself — is the subject of the final paper.</p>
+    <div class="tags">
+      <span class="tag lit">Literal — θ_W sets the mixing; the photon remains massless after breaking</span>
+      <span class="tag bri">Bridge — the angle as the dial between observational modes</span>
+    </div>
+  </div>
+</section>
+
+<section data-status="spec lit">
+  <div class="wrap">
+    <p class="snum">§7 · witness</p><h2>The seam<span class="kicker">where the doctrine is a lens</span></h2>
+    <p>Held to its limit: "watching and participating are one" is a bridge from a specific gauge unification to a general claim about observation, and it strains where the electroweak structure is a particular SU(2)×U(1) theory rather than literally a theory of measurement, and where the substrate is not a gauge theory. The literal core is firm: the photon and Z are mixtures of W³ and B through θ_W, and electric charge is Q = T₃ + Y/2. Both are standard-model facts, independent of any account of observation. From the first follows that the two observational modes are projections of one coupling; from the second, that the observer's defining property is composite. The lens — that the watching and the participating are one refracted thing, and the electron a regime rather than a floor — is named as a lens. What it leaves standing is the warning carried into the last paper: even the observer's identity is built, and built things have a builder.</p>
+    <div class="tags">
+      <span class="tag spec">Speculative — unification-as-one-observation, charge-as-composite-identity · flagged</span>
+      <span class="tag lit">Literal — electroweak mixing and the derived form of electric charge</span>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <p><span class="em">Corollary.</span> The observer arrived with two ways of touching the system — a passive look and a handed reach — and they turn out to be one coupling, drawn from a single structure and split only because we work below the scale where it shows whole. Worse for Paper I's tidy foundation: the charge that made the observer an electron is itself assembled, a sum of things beneath it, the low-energy face of a deeper order. The watching, the participating, and the very charge that distinguished the watcher are three appearances of one concealed unity. One question remains, and it is the largest. What concealed it — what fills the space, breaks the symmetry, and hands out the mass that made the difference between the photon that watches and the Z that participates? That field was never empty, and it is the last paper.</p>
+    <div class="roadmap">
+      <div class="rm done"><p class="rk">Lepton · I</p><p>The electron — charged, colorless, free. The observer is outside by a selection rule.</p></div>
+      <div class="rm done"><p class="rk">Lepton · II</p><p>The weak force — the observer participates, handed, and at the limit transmutes. No view from nowhere.</p></div>
+      <div class="rm"><p class="rk">Lepton · IV</p><p>Mass and the field that fills space — the Higgs. What broke the symmetry, made the carriers heavy, and gave the observer its weight. The vacuum that was never empty.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Status discipline.</b> Claims are tagged <b>literal</b> (the fundamental neutral fields are W³ and B; the photon and Z are their mixtures through θ_W; electric charge is Q = T₃ + Y/2; the symmetry is restored above the electroweak scale), <b>bridge</b> (watching and participating as one refracted coupling, the observer's charge as composite identity, the split as scale-dependent appearance, the angle as the dial between modes), or <b>speculative</b> (the unification-as-single-observation reading itself, flagged as a lens). The seam in §7 separates the literal mixing from the analogy laid over it.</p>
+    <p><b>What is being claimed.</b> Not that observation is literally an SU(2)×U(1) gauge theory. That electroweak unification's two facts — the photon and Z are mixtures of deeper fields, and electric charge is a derived sum — assign the observer two corrections to Paper I: its passive and participating modes are one coupling refracted by scale, and its defining property is not fundamental but built. The electron is a regime, not a floor. The watching was never separate from the reaching, and the charge that named the watcher was assembled from beneath. What did the assembling is the last question.</p>
+    <p class="mono" style="color:var(--ink-soft);font-size:11px;letter-spacing:.04em">LEPTON PAPERS · III of IV · electroweak series · release · doctrine · derive verdicts from measured results</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var on = {lit:true, bri:true, spec:true};
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".schip"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section[data-status]"));
+  function apply(){
+    sections.forEach(function(sec){
+      var tiers = (sec.getAttribute("data-status")||"").split(/\s+/).filter(Boolean);
+      var visible = tiers.some(function(t){ return on[t]; });
+      sec.classList.toggle("dim", !visible);
+    });
+  }
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){
+      var s = c.getAttribute("data-s");
+      on[s] = !on[s];
+      c.setAttribute("aria-pressed", on[s] ? "true" : "false");
+      apply();
+    });
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
